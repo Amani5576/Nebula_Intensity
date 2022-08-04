@@ -88,4 +88,18 @@ print(i_arr)
 print("")
 
 
+g_mat , h_mat, i_mat = np.asarray(g_arr), np.asarray(h_arr) , np.asarray(i_arr)
+
+print("__________________HA matrix________________________")
+print("")
+print(g_mat) 
+print("")
+print("__________________OIII matrix_________________________")
+print("")
+print(h_mat)
+print("")
+print("__________________SII matrix_________________________")
+print("")
+print(i_mat)
+print("")
 
