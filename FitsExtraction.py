@@ -64,9 +64,8 @@ print(hdu2[0].data)
 print("")
 
 #Converting PrimaryHDU's into numpy arrays
-g_arr = np.array(hdu0[0].data) #[0] means the Primary whilst [1] would have been ImageHDU
-h_arr = np.array(hdu0[0].data)
-i_arr = np.array(hdu0[0].data)
+g_arr , h_arr, i_arr= np.array(hdu0[0].data), np.array(hdu1[0].data) , np.array(hdu2[0].data) #[0] means the Primary whilst [1] would have been ImageHDU
+
 
 #Making sure to close each Fits file after accessing. 
 #Must come after converting the "readonly" data to numpy array first
