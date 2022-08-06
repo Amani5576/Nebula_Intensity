@@ -5,13 +5,19 @@ Created on Wed Aug  3 16:06:49 2022
 @author: Amani
 """
 from astropy.io import fits
-import numpy as np
-
-
 
 g = "HA.fit"
 h = "OIII.fit"
 i = "SII.fit"
+
+#Dictionary for usage in getting the numpy data and its type
+numpyDatTyp = { 8: "numpy.uint8 (note it is UNsigned integer)",
+               16: "numpy.int16",
+               32: "numpy.int32",
+               64: "numpy.int64",
+              -32: "numpy.float32",
+              -64: "numpy.float64"
+              }
 
 print("_________________HDULists________________________")
 #Below returns a HDUList of the Fit data files.
@@ -29,7 +35,7 @@ hdu2 = fits.open(i, mode='readonly', memmap=None,
 print(hdu0.info(),hdu1.info(),hdu2.info())
 
 print("")
-print("_______Impotant Header information from all PrimaryHDU_______")
+print("_______Impotant Header information from all PrimaryHDU's_______")
 print("")
 
 head0 = fits.getheader(g) # Could have used (h) or (i) but all info are equivalent
@@ -45,60 +51,24 @@ print("Color Spacing: ", fits.getval(g,"COLORSPC"))
 print("Number of Data Axe: ", fits.getval(g,"NAXIS1"))
 print("Approximate right ascension in hours: (", fits.getval(g,"OBJCTRA"), ")")
 print("Approximate declination: (", fits.getval(g,"OBJCTDEC"), ") degrees")
-print("number of bits per data pixel: ", fits.getval(g,"BITPIX"))
+
+BITPIXData = fits.getval(g,"BITPIX")
+if BITPIXData in numpyDatTyp:
+    print("number of bits per data pixel: ", BITPIXData, " meaning of type ", numpyDatTyp[BITPIXData])
 
 print("")
 
 #Displaying the default data Matrix from PrimaryHDU's of HA, OIII and SII
-print("__________________HA PrimaryHDU Data_________________________")
+print("__________________HA ImageHDU Data_________________________")
 print("")
-print(hdu0[0].data) 
+print(hdu0[1].data) 
 print("")
-print("__________________OIII PrimaryHDU Data_________________________")
+print("__________________OIII ImageHDU Data_________________________")
 print("")
-print(hdu1[0].data)
+print(hdu1[1].data)
 print("")
-print("__________________SII PrimaryHDU Data_________________________")
+print("__________________SII ImageHDU Data_________________________")
 print("")
-print(hdu2[0].data)
-print("")
-
-#Converting PrimaryHDU's into numpy arrays
-g_arr , h_arr, i_arr= np.array(hdu0[0].data), np.array(hdu1[0].data) , np.array(hdu2[0].data) #[0] means the Primary whilst [1] would have been ImageHDU
-
-
-#Making sure to close each Fits file after accessing. 
-#Must come after converting the "readonly" data to numpy array first
-hdu0.close() 
-hdu1.close()
-hdu2.close()
-
-print("__________________HA array________________________")
-print("")
-print(g_arr) 
-print("")
-print("__________________OIII array_________________________")
-print("")
-print(h_arr)
-print("")
-print("__________________SII array_________________________")
-print("")
-print(i_arr)
-print("")
-
-
-g_mat , h_mat, i_mat = np.asarray(g_arr), np.asarray(h_arr) , np.asarray(i_arr)
-
-print("__________________HA matrix________________________")
-print("")
-print(g_mat) 
-print("")
-print("__________________OIII matrix_________________________")
-print("")
-print(h_mat)
-print("")
-print("__________________SII matrix_________________________")
-print("")
-print(i_mat)
+print(hdu2[1].data)
 print("")
 
