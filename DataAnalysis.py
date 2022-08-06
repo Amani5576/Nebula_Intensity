@@ -5,7 +5,7 @@ Created on Wed Aug  3 16:06:49 2022
 @author: Amani
 """
 
-import FitsExtract.py as FE
+from FitsExtraction import hdu0, hdu1, hdu2  #importing HDU Data Sets from FIT file
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -14,14 +14,14 @@ import matplotlib.pyplot as plt
 Converting PrimaryHDU's into numpy arrays by firstly extracting them from 
 FitsEctract.py package
 """
-g_arr , h_arr, i_arr= np.array(FE.hdu0[1].data), np.array(FE.hdu1[1].data) , np.array(FE.hdu2[1].data) #[0] means the Primary whilst [1] would have been ImageHDU
+g_arr , h_arr, i_arr= np.array(hdu0[1].data), np.array(hdu1[1].data) , np.array(hdu2[1].data) #[0] means the Primary whilst [1] would have been ImageHDU
 
 
 #Making sure to close each Fits file after accessing. 
 #Must come after converting the "readonly" data to numpy array first
-FE.hdu0.close() 
-FE.hdu1.close()
-FE.hdu2.close()
+hdu0.close() 
+hdu1.close()
+hdu2.close()
 
 print("__________________HA array/matrix________________________")
 print("")
@@ -110,8 +110,8 @@ scF = 7 #Scaling
 gScale, hScale, iScale = (max_g - min_g)/scF, (max_h - min_h)/scF, (max_i - min_h)/scF
 
 for i in g_arr:
-    mltp = 0
+    mltp = 0 #Multiplier 
     for j in i:
-        mltp += 1 #Multiplier (Higher the value, the lower the range)
-        if j >= max_g - mltp*gScale: #If pixel is of highest intensity      
-            j = 0
+        mltp += 1 #(Higher the value, the lower the range of intenisty)
+        if j >= max_g - mltp*gScale: #If pixel is of highest intensity
+            
