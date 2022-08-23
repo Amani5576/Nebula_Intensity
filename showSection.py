@@ -9,7 +9,7 @@ from DataAnalysis import g_arr, h_arr, i_arr #Importing arrays
 
 import matplotlib.pyplot as plt
 
-colors = plt.cm.Greys #Making Background black and data white.
+colors = plt.cm.gray #Making Background black and data white.
 
 def show(filename):
     
