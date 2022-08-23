@@ -168,29 +168,32 @@ print("")
 
 gScale, hScale, iScale = (max_g - min_g)/scF, (max_h - min_h)/scF, (max_i - min_h)/scF
 
-XYm_gList, XYm_hList, XYm_iList = [], [], [] #set array holding x and y coordinates for g_arr, h_arr and i_arr
+XYm_gList = [] #set array holding x and y coordinates for g_arr
+XYm_hList = [] #set array holding x and y coordinates for h_arr
+XYm_iList = []#set array holding x and y coordinates for i_arr
 
 i_idxNum = 0 #row number
-for i in g_arr:
+for i in g_arr: #Looping through array of 
     y = i_idxNum #row number or y coordinate of element
     j_idxNum = 0 #column number
     for j in i: #for every element in the list "i"
         mltp = 0 #creating multiplier variable
         x = j_idxNum #column number or x coordinate of element
-        while mltp <= scF and mltp<=Levels+1:
+        while mltp <= scF and mltp<=Levels+1: #If the multiplier vairable smaller than or equal to the scaling factor
+                                              #Also making sure to dump the rest of the other data inside an extra lower level
             if j >= max_g - mltp*gScale: 
                 """Checking condition if data is in specific intensity level 
                 in terms of the pixel's photon number First level is from maximum (inclusive)
                 to lover region of that first level (aslo inclusive)"""
-                if mltp == Levels+1 or (x,y,mltp-1) in XYm_gList: #If data lands in extra level or coordinate repetition
-                    break #Get out of while loop
+                if mltp == Levels+1 or (x,y,mltp-1) in XYm_gList: #If data lands in extra level or there already exists a coordinate
+                    break #Get out of while loop rather than recording it
                 else:
                     temp_tup = (x,y,mltp) #Trapping tuple of coords and their corresponding multiplier
                     #tuples t in (<x>,<y>, t) where t = 0 are just the pixel coordinates that have maximum number of photons.
                     XYm_gList.append(temp_tup) #Tuple will be having cooridnate elements x, y as well as the reverse multiplier prescribed to that coordinate.
             mltp += 1  #Increasing multiplier to find the next relative intensity
-        j_idxNum += 1
-    i_idxNum += 1
+        j_idxNum += 1 #Incrementing the x-cooordinate
+    i_idxNum += 1 #Incrementing the y-coordinate
 
 #Same done for h_arr
 i_idxNum = 0 #start y coordinate counter from 0 again
@@ -202,7 +205,7 @@ for i in h_arr:
         x = j_idxNum 
         while mltp <= scF and mltp<=Levels+1:
             if j >= max_h - mltp*hScale : 
-                if mltp == Levels+1:
+                if mltp == Levels+1 or (x,y,mltp-1) in XYm_hList:
                     break
                 else:
                     temp_tup = (x,y,mltp)
@@ -211,7 +214,7 @@ for i in h_arr:
         j_idxNum += 1
     i_idxNum += 1
 
-
+XYm_iList.append(temp_tup)
 #Same done for i_arr
 i_idxNum = 0 #The "i" here is regards to the i in the for loop. NOT the matrix "i_arr".
 for i in i_arr:
@@ -222,7 +225,7 @@ for i in i_arr:
         x = j_idxNum 
         while mltp <= scF and mltp<=Levels+1:
             if j >= max_i - mltp*iScale : 
-                if mltp == Levels+1:
+                if mltp == Levels+1 or (x,y,mltp-1) in XYm_iList:
                     break
                 else:
                     temp_tup = (x,y,mltp)

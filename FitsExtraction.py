@@ -38,17 +38,18 @@ print("")
 print("_______Impotant Header information from all PrimaryHDU's_______")
 print("")
 
+
 head0 = fits.getheader(g) # Could have used (h) or (i) but all info are equivalent
 
+print(head0)
 """
 print(head0) is astropy's version of head0.keys() to get key names.
 In addition this feature also shows the assigned data to each key.
 """
 print("Name of Object: ", fits.getval(g,"OBJECT"))
-print("Number of data Axes: ", fits.getval(g,"NAXIS1"))
+print("Number of data Axes: ", fits.getval(g,"NAXIS1"), "pixels")
 print("Resolution: ", fits.getval(g,"RESOLUTN")," ", fits.getval(g,"RESOUNIT"))
 print("Color Spacing: ", fits.getval(g,"COLORSPC"))
-print("Number of Data Axe: ", fits.getval(g,"NAXIS1"))
 print("Approximate right ascension in hours: (", fits.getval(g,"OBJCTRA"), ")")
 print("Approximate declination: (", fits.getval(g,"OBJCTDEC"), ") degrees")
 
