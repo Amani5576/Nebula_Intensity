@@ -2,8 +2,7 @@
 # Rofhiwa Matumba
 # 3931762
 
-from DataAnalysis import g_arr, h_arr, i_arr
-from astropy.io import fits # Import fits library for reading .fit files
+from DataAnalysis import g_arr, h_arr, i_arr # Importing arrays from Amani's code
 import matplotlib.pyplot as plt # Import matplotlib library for plotting
 import numpy as np # Import numpy library for array arithmetic
 
@@ -32,6 +31,6 @@ plt.figure()
 for i, file in enumerate(files):
     plot_spectrum(file)
     plt.title(names[i]) # Title of the plot
-    plt.figure()
+    plt.figure() # Show plot in its own window
 
-plt.show()
+plt.show() # Display all the spectra on the screen at once
