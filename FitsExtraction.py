@@ -41,7 +41,6 @@ print("")
 
 head0 = fits.getheader(g) # Could have used (h) or (i) but all info are equivalent
 
-print(head0)
 """
 print(head0) is astropy's version of head0.keys() to get key names.
 In addition this feature also shows the assigned data to each key.
