@@ -2,7 +2,7 @@
 # Rofhiwa Matumba
 # 3931762
 
-from DataAnalysis import arrs # Importing arrays from Amani's code
+from DataAnalysis import arrs, Levels # Importing arrays from Amani's code
 from DataAnalysis import XYm_Lists # Importing filtered data from Amani's code
 import matplotlib.pyplot as plt # Import matplotlib library for plotting
 import numpy as np # Import numpy library for array arithmetic
@@ -37,12 +37,13 @@ for i, file in enumerate(files):
 for i, data in enumerate(files_filtered):
     arr = np.zeros([400,400]) # Create a 400x400 matrix of zeros
     for coord in data: # Loops through each of the filtered data, plots accordingly
-        arr[coord[1], coord[0]] = 1 # Adds filtered data to the matrix
+        arr[coord[1], coord[0]] = Levels - coord[2] # Adds filtered data to the matrix, including specified intensity levels
+        # (Max = Levels - 0, where 0 -> Max intensity)
     plt.title(f"Filtered data for {names[i]}")
     plt.xlabel("Image X-axis")
     plt.axis("off")
     plt.ylabel("Image Y-axis")
-    plt.imshow(arr, cmap=plt.cm.gray)
+    plt.imshow(arr, cmap=plt.cm.magma)
     plt.figure() # Show plot in its own window
 
 plt.show() # Show all the plots at once
