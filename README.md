@@ -8,11 +8,11 @@ Data sourced from [link](https://www.mattdieterich.com/nebuladata "this site")  
 This file opens and extracts the HDU data from the fit files and puts them into an array; HDUs.
 Each fit File consists of a Primary and an Image HDU. These are two sub-lists within each element of HDUs
 
-    HDUs[0] -> [PrimaryHDU, ImageHDU] from Hydrogen Alpha Fit file 
-    HDUs[1] -> from Oxygen 3
-    HDUs[2] -> from Silicon 2
+HDUs[0] -> [PrimaryHDU, ImageHDU] from Hydrogen Alpha Fit file 
+HDUs[1] -> [PrimaryHDU, ImageHDU] from Oxygen 3 Fit file
+HDUs[2] -> [PrimaryHDU, ImageHDU] from Silicon 2 Fit file
      
-Hence accessing the Image HDU of in row element x : HDUs[x][1]
+Hence accessing the Image HDU of in row element 'x' : HDUs[x][1]
 
 Running the file allows you to get necessary information from the header of the Primary such as :
 
@@ -48,7 +48,7 @@ This file:
             
     NOTE: that there automatically exists an initial level 0. This intenisty level is only for one value in particular which has the highest intensity value within the entire matrix.
              
-        This essestially decreases processing time.
+*This essestially decreases processing time.*
 
     -Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
         -Get pixels that belong to all levels of intensity up until the lowest intensity
@@ -57,7 +57,7 @@ This file:
         
 The pixels will be given in terms of a tuple:
 
-    (<x-coord> , <y-coord> , <Intensity level>)
+    (<x-coord> , <y-coord> , <Intensity_level>)
 
 See image below with an example of chosen user input:
 Scaling Factor = 40
@@ -85,13 +85,13 @@ This file shows the initial image matrix of Hydrogen Alpha, Oxygen 3 and Silicon
 
 This is due to the fact that each numbered value in the matrices is a quanitity of the number of photons captured by the Telescope. Each element is a pixel containing a specified number of photons.
 
-NOTE: Run seperately AFTER running through Data Analysis
+NOTE: Run seperately **AFTER** running through Data Analysis
 
 In the command line, input:
     
     show(x)
     
-where x is the name of the fits file (with extension .fit) in quotation.
+where 'x' is the name of the fits file (with extension .fit) in quotation.
 
 Very useful for Comparison between plots from spectra.py @rofhima13.
 
