@@ -9,7 +9,6 @@ from FitsExtraction import HDUs, fitFiles, pixelNum  #importing HDU Data Sets fr
 import numpy as np #Importing numpy for useful array manipulation.
 import matplotlib.pyplot as plt #Used for graph plotting
 from statistics import median, multimode, stdev
-import show
 import sys 
 """
 Converting PrimaryHDU's into numpy arrays by firstly extracting them from 
