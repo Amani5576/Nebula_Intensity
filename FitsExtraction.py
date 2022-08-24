@@ -6,9 +6,7 @@ Created on Wed Aug  3 16:06:49 2022
 """
 from astropy.io import fits
 
-g = "HA.fit"
-h = "OIII.fit"
-i = "SII.fit"
+fitFiles = ["HA.fit", "OIII.fit", "SII.fit"]
 
 #Dictionary for usage in getting the numpy data and its type
 numpyDatTyp = { 8: "numpy.uint8 (note it is UNsigned integer)",
@@ -21,54 +19,44 @@ numpyDatTyp = { 8: "numpy.uint8 (note it is UNsigned integer)",
 
 print("_________________HDULists________________________")
 #Below returns a HDUList of the Fit data files.
-hdu0 = fits.open(g, mode='readonly',                #String value, fits file name (including extension)
-                     memmap=None,                   #No memory mapping required
-                     save_backup=False,             #No need to ensure that a backup of the original file is saved before any changes occur
-                     cache=True,                    #files are already locally stored
-                     lazy_load_hdus=None)           #file isnt too large
-        
-hdu1 = fits.open(h, mode='readonly', memmap=None, 
-                     save_backup=False, cache=True, lazy_load_hdus=None)
-hdu2 = fits.open(i, mode='readonly', memmap=None, 
-                     save_backup=False, cache=True, lazy_load_hdus=None)
+HDUs = [] #List to stor HDU (Header Data Unit) for HA, OIII and SII.
+for x in range(len(fitFiles)):#looping through length of array
+    HDUs.append(fits.open(fitFiles[x])) #Open fits file and add HDU data into HUDs array
+    print(HDUs[x].info()) #Outputs a Summary of the info of the HDU List.
+    print("")
 
-print(hdu0.info(),hdu1.info(),hdu2.info())
-
-print("")
 print("_______Impotant Header information from all PrimaryHDU's_______")
 print("")
 
-
-head0 = fits.getheader(g) # Could have used (h) or (i) but all info are equivalent
+#Getting key names from ver long Primary HDU Dictionary
+head0 = fits.getheader(fitFiles[x]) # Could have used (h) or (i) but all info are equivalent
 
 """
 print(head0) is astropy's version of head0.keys() to get key names.
-In addition this feature also shows the assigned data to each key.
+In addition, this printing method also shows the assigned data to each key.
 """
-print("Name of Object: ", fits.getval(g,"OBJECT"))
-print("Number of data Axes: ", fits.getval(g,"NAXIS1"), "pixels")
-print("Resolution: ", fits.getval(g,"RESOLUTN")," ", fits.getval(g,"RESOUNIT"))
-print("Color Spacing: ", fits.getval(g,"COLORSPC"))
-print("Approximate right ascension in hours: (", fits.getval(g,"OBJCTRA"), ")")
-print("Approximate declination: (", fits.getval(g,"OBJCTDEC"), ") degrees")
 
-BITPIXData = fits.getval(g,"BITPIX")
-if BITPIXData in numpyDatTyp:
+#Using getval() to get specific information from 
+
+print("Name of Object: ", fits.getval(fitFiles[x],"OBJECT"))
+pixelNum= fits.getval(fitFiles[x],"NAXIS1")
+print("Number of data Axes: ", pixelNum, "pixels")
+print("Resolution: ", fits.getval(fitFiles[x],"RESOLUTN")," ", fits.getval(fitFiles[x],"RESOUNIT"))
+print("Color Spacing: ", fits.getval(fitFiles[x],"COLORSPC"))
+print("Approximate right ascension in hours: (", fits.getval(fitFiles[x],"OBJCTRA"), ")")
+print("Approximate declination: (", fits.getval(fitFiles[x],"OBJCTDEC"), ") degrees")
+
+BITPIXData = fits.getval(fitFiles[x],"BITPIX") #Getting BitPixelData from Primary HDU
+if BITPIXData in numpyDatTyp: #If the bitPixel number is in the defined dictionary
     print("number of bits per data pixel: ", BITPIXData, " meaning of type ", numpyDatTyp[BITPIXData])
-
 print("")
+
+HDUDataTitles = ["__________________HA ImageHDU Data_________________________","__________________OIII ImageHDU Data_________________________", "__________________SII ImageHDU Data_________________________"]
 
 #Displaying the default data Matrix from PrimaryHDU's of HA, OIII and SII
-print("__________________HA ImageHDU Data_________________________")
-print("")
-print(hdu0[1].data) 
-print("")
-print("__________________OIII ImageHDU Data_________________________")
-print("")
-print(hdu1[1].data)
-print("")
-print("__________________SII ImageHDU Data_________________________")
-print("")
-print(hdu2[1].data)
-print("")
+for x in range(len(fitFiles)): #Looping through length of array fitFiles
+    print(HDUDataTitles[x]) #Print the realtive title
+    print("")
+    print(HDUs[x][1].data) #From the image HDU, show the ImageHDU of current fitFile.
+    print("")
 

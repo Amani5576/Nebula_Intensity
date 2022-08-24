@@ -2,13 +2,13 @@
 # Rofhiwa Matumba
 # 3931762
 
-from DataAnalysis import g_arr, h_arr, i_arr # Importing arrays from Amani's code
-from DataAnalysis import XYm_gList, XYm_hList, XYm_iList # Importing filtered data from Amani's code
+from DataAnalysis import fitFiles # Importing arrays from Amani's code
+from DataAnalysis import XYm_Lists # Importing filtered data from Amani's code
 import matplotlib.pyplot as plt # Import matplotlib library for plotting
 import numpy as np # Import numpy library for array arithmetic
 
-files = [g_arr, h_arr, i_arr] # Create a list of filenames (unfiltered data)
-files_filtered = [XYm_gList, XYm_hList, XYm_iList] # Create a list of filtered data
+files = fitFiles # Create a list of filenames (unfiltered data)
+files_filtered = XYm_Lists # Create a list of filtered data
 names = ["Hydrogen Alpha", "Oxygen III", "Silicon II"] # Names of nebulae
 
 def plot_spectrum(file): # Create a function to plot the spectrum
