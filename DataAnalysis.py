@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug  3 16:06:49 2022
+# Intensity Spectra of Nebulae
+# S. Amani Njoroge
+# 4060924
 
-@author: Amani
-"""
-
-from FitsExtraction import HDUs, fitFiles, pixelNum  #importing HDU Data Sets from FIT files as well as copies of the Fit files
+from FitsExtraction import HDUs, pixelNum  #importing HDU Data Sets from FIT files as well as copies of the Fit files
 import numpy as np #Importing numpy for useful array manipulation.
 import matplotlib.pyplot as plt #Used for graph plotting
 from statistics import median, multimode, stdev
@@ -14,15 +11,17 @@ import sys
 Converting PrimaryHDU's into numpy arrays by firstly extracting them from 
 FitsEctract.py package
 """
-arrs = []
+arrs = [] #Storing numpy matrix of ImageHDU of HA, OIII and SII respetively.
+plot_Titles = ["Hydrogen Alpha", "Oxygen III", "Silicon II"]
 
+import showSection
 
 for x in range(len(HDUs)):
     #HDUs[x][0] means the Primary HDU whilst HDUs[x][1] would have been ImageHDU
     arrs.append(np.array(HDUs[x][1].data))
     
     #Making sure to close each Fits file after accessing. 
-    #Must come after converting the "readonly" data to numpy array first
+    #Must come after converting the data to numpy array first
     HDUs[x].close()
     
 matrix_title = ["__________________HA array/matrix________________________", "__________________OIII array/matrix_________________________", "__________________SII array/matrix_________________________"]
@@ -35,27 +34,6 @@ for x in range(len(arrs)): #Looping through length of arrs (starting from 0 to l
 
 print("Please note that 2D arrays are already matrices")
 print("")
-
-"""
-
-Below represents an easy method for the user to use the show() function on the
- console to get an output of an image that enables them to see the list 
- arrays/matrices of HA, OIII and SII. Each numbered value in the matrices is a
- quanitity of the number of photons captured by the Telescope. Each element is 
- a pixel containing a specified 
-number of photons.
-
-"""
-
-plot_Titles = ["Hydrogen Alpha", "Oxygen III", "Silicon II"]
-
-def show(filename):
-    
-    for x in np.arange(len(fitFiles)): #looping through length of fitFiles array (starting from 0 up until legth-1)
-        if filename == fitFiles[x]: #Checking whether input data is same as output
-            plt.axis("off") #No axis on the image
-            plt.title(plot_Titles[x]) #Title of the image
-            plt.imshow(arrs[x]) #pyplot feature tospit out the array in an image
 
 minToMax_arr = []   #Matrix needed to store 1D data for checking Max and Min 
                     #photons in particular array
@@ -114,13 +92,8 @@ print("_________________________________________________________________________
 scF = int(input("""
                            
     What Integer Scaling Factor would you like to make in order to create Scale-Levels for relative intensity? 
-    E.g. You've chosen Scaling factor to be 6 (6 levels of varying intensity):
-         If max = 80 and min = 20 then range is (80 - 20) = 60
-         By dividing the range by the Scale we get -> 60/6 = 10.
-         Hence, from Level 1 (highest intensity) to Level 2
-         (Second highest intensity) is a difference of 10.
-         
-         So what will it be? Its advisable to choose a high number such as 40 or %d.
+            
+         Its advisable to choose a high number such as 40 or %d.
          Highest value to be chosen is %d due to a limitation of pixels.
          
                 """ % (int(pixelNum/4),pixelNum)))
@@ -130,14 +103,7 @@ Levels = int(input("""
 Levels have been successfully constructed. 
     
     Input the number of level intensities you desire (from highest intesity as the first level)
-    e.g. Level 1 -> highest intensity level (Thus, type in the integer "1")
-         Level 2 -> 2nd highest intensity up until highest intenisty (Thus, type in the integer "2")
-         Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
-         Level 4 -> 4th highest........            
-         
-         NOTE: that there automatically exists an initial level 0. This intenisty level is only for 
-         one value in particular which has the highest intensity value within the entire matrix.
-         
+             
          If you desire to see all levels of intensity, then type %d again.
          (Be Warned, it might take some time with regards to the processessing power of your machine)
          Recommended to choose upto the top quarter tier such as %d or lower.

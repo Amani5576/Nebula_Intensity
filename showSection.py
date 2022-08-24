@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Aug  6 04:09:06 2022
-
-@author: Amani
-"""
-
 from DataAnalysis import arrs #Importing arrays
 
 import matplotlib.pyplot as plt

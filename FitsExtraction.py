@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug  3 16:06:49 2022
+# Intensity Spectra of Nebulae
+# S. Amani Njoroge
+# 4060924
 
-@author: Amani
-"""
 from astropy.io import fits
 import numpy as np
 
