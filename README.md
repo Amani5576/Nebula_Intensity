@@ -73,7 +73,7 @@ See image below with an example of chosen user input:
     * `x` *(`x` is an integer Level number)*
     * `x,y,z,...` *(multiple integer level numbers of any random chosen level)*
 
-Tuples are used further on in plotting of filtered data in spectra.py @rofhima13
+Tuples are used in plotting of filtered data in spectra.py @rofhima13
 
 For the Hydrogen Alpha Filtered data:
 
