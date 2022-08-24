@@ -69,11 +69,11 @@ See image below with an example of chosen user input:
 1. Scaling Factor = `40`
 2. Level Limit = `10` 
 3. Last user input:
-    * <mark>`Yes` *(in order to see all levels)*</mark>
+    * ==`Yes` *(in order to see all levels)*==
     * `x` *(`x` is an integer Level number)*
     * `x,y,z,...` *(multiple integer level numbers of any random chosen level)*
 
-Tuples are used in plotting of filtered data in spectra.py @rofhima13
+Tuples are <mark>used</mark> in plotting of filtered data in spectra.py @rofhima13
 
 For the Hydrogen Alpha Filtered data:
 
