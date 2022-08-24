@@ -62,11 +62,11 @@ minToMax_arr = []   #Matrix needed to store 1D data for checking Max and Min
 
 #Array storing string elements for ouptutting stat titles
 stat_titles = ["_____HA Stats________", "_____OIII Stats________", "_____SII Stats________" ]
-max_vals = [] #storing Maximum value of g_arr, h_arr and i_arr into array, RESPECTIVELY
-min_vals = [] #storing Minimum value of g_arr, h_arr and i_arr into array, RESPECTIVELY
-median_arr = []
-modes_arr = []
-stDev_arr = []
+max_vals = [] #storing Maximum value of HA, OIII and SII into array, RESPECTIVELY
+min_vals = [] #storing Minimum value of HA, OIII and SII into array, RESPECTIVELY
+median_arr = [] #storing Median value of HA, OIII and SII into array, RESPECTIVELY
+modes_arr = [] #storing Modal(s) value of HA, OIII and SII into array, RESPECTIVELY
+stDev_arr = [] #storing standard Deviation value of HA, OIII and SII into array, RESPECTIVELY
 
 
 for x in range(len(stat_titles)):
@@ -218,10 +218,12 @@ if Levels !=1:
         Or
         
         Would you rather see specific levels? 
-            e.g: Only level 2 and level 3: then type -> 2,3
-                 Only Level 6 and level 54 and level 4: then type -> 6, 54, 4
+            e.g: Only want pixel coordinate with the highest value: type -> 0
+                Only level 2 and level 3: then type -> 2,3
+                 Only Level 6 and level 31 and level 4: then type -> 6, 31 , 4
                  (spacing doesnt matter, but make sure to separate using commas)
-               
+                 
+                 
                     """)
     print("---------------------------------------------------------")
     print("")
