@@ -34,7 +34,7 @@ This file:
     
 * Allows user input in assesment of relative intenisty based on a specific ImageHDU
 
-    -Lets user decide on scaling Factor. For Exmaple:
+    -Lets user decide on scaling Factor. For Example:
 
          You've chosen Scaling factor to be 6 (6 levels of varying intensity):
          
@@ -55,7 +55,7 @@ This file:
              
 *The above essestially decreases processing time if not all intensity levels are desired.*
 
-*Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
+* Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
     -Get pixels that belong to all levels of intensity up until the lowest intensity
     -Get pixels that belong to a particular level of intenisty 
     -Let pixels that belong to particular levels of intenisty 
@@ -66,9 +66,9 @@ The pixels will be given in terms of a tuple:
 
 See image below with an example of chosen user input:
 
-*Scaling Factor = `40`
-*Level Limit = `10`
-*Last user input = `Yes` *(in order to see all levels)*
+* Scaling Factor = `40`
+* Level Limit = `10`
+* Last user input = `Yes` *(in order to see all levels)*
 
 
 Tuples are used further on in plotting of filtered data in spectra.py @rofhima13
