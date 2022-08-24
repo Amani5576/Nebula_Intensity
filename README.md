@@ -55,10 +55,10 @@ This file:
              
     *The above essestially decreases processing time if not all intensity levels are desired.*
 
-    * Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
-        -Get pixels that belong to all levels of intensity up until the lowest intensity
-        -Get pixels that belong to a particular level of intenisty 
-        -Let pixels that belong to particular levels of intenisty 
+* Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
+    -Get pixels that belong to all levels of intensity up until the lowest intensity
+    -Get pixels that belong to a particular level of intenisty 
+    -Let pixels that belong to particular levels of intenisty 
         
 The pixels will be given in terms of a tuple:
 
