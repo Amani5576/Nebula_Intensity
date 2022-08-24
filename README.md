@@ -14,7 +14,9 @@ Each fit File consists of a Primary and an Image HDU. These are two sub-lists wi
 
 `HDUs[2]` ---> `[PrimaryHDU, ImageHDU]` from Silicon 2 Fit file
      
-Hence accessing the Image HDU of in row element `x` : HDUs[x][1]
+Hence accessing the `ImageHDU` of in row element `x` of `HDUs` array: 
+            
+    HDUs[x][1]
 
 Running the file allows you to get necessary information from the header of the Primary such as :
 
@@ -30,7 +32,7 @@ This file:
     - Mode(s) of pixel value(s)
     - Standard Deviation of pixel values.
     
-* Allows User input in assesment of relative intenisty based ona specific ImageHDU
+* Allows user input in assesment of relative intenisty based on a specific ImageHDU
 
     -Lets user decide on scaling Factor. For Exmaple:
 
@@ -43,19 +45,19 @@ This file:
     -Lets user decide on the number of level intensities desirable (from highest intesity as the first level)
     For Example:
 
-         Level 1 -> highest intensity level (Thus, type in the integer "1")
-         Level 2 -> 2nd highest intensity up until highest intenisty (Thus, type in the integer "2")
-         Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
-         Level 4 -> 4th highest........         
+        Level 1 -> highest intensity level (Thus, type in the integer "1")
+        Level 2 -> 2nd highest intensity up until highest intenisty (Thus, type in the integer "2")
+        Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
+        Level 4 -> 4th highest........         
             
-    NOTE: that there automatically exists an initial level 0. This intenisty level is only for one value in particular which has the highest intensity value within the entire matrix.
+        NOTE: that there automatically exists an initial level 0. This intenisty level is only for one value in particular which has the highest intensity value within the entire matrix.
              
-*This essestially decreases processing time.*
+*The above essestially decreases processing time if not all intensity levels are desired.*
 
     -Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
         -Get pixels that belong to all levels of intensity up until the lowest intensity
         -Get pixels that belong to a particular level of intenisty 
-        -let pixels that belong to particular levels of intenisty 
+        -Let pixels that belong to particular levels of intenisty 
         
 The pixels will be given in terms of a tuple:
 
@@ -93,9 +95,9 @@ In the command line, input:
     
     show(x)
     
-where `x` is the name of the fits file (with extension .fit) in quotation.
+where `x` is the name of the fits file (with extension **.fit**) in quotation.
 
-Very useful for Comparison between plots from spectra.py @rofhima13.
+Very useful for comparison between plots that are made with *spectra.py* file @rofhima13.
 
 ## spectra.py file (by rofhima13)
 
