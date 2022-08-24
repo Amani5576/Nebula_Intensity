@@ -8,13 +8,13 @@ Data sourced from [link](https://www.mattdieterich.com/nebuladata "this site")  
 This file opens and extracts the HDU data from the fit files and puts them into an array; HDUs.
 Each fit File consists of a Primary and an Image HDU. These are two sub-lists within each element of HDUs
 
-HDUs[0] -> [PrimaryHDU, ImageHDU] from Hydrogen Alpha Fit file
+`HDUs[0]` ---> `[PrimaryHDU, ImageHDU]` from Hydrogen Alpha Fit file
  
-HDUs[1] -> [PrimaryHDU, ImageHDU] from Oxygen 3 Fit file
+`HDUs[1]` ---> `[PrimaryHDU, ImageHDU]` from Oxygen 3 Fit file
 
-HDUs[2] -> [PrimaryHDU, ImageHDU] from Silicon 2 Fit file
+`HDUs[2]` ---> `[PrimaryHDU, ImageHDU]` from Silicon 2 Fit file
      
-Hence accessing the Image HDU of in row element 'x' : HDUs[x][1]
+Hence accessing the Image HDU of in row element `x` : HDUs[x][1]
 
 Running the file allows you to get necessary information from the header of the Primary such as :
 
@@ -93,7 +93,7 @@ In the command line, input:
     
     show(x)
     
-where 'x' is the name of the fits file (with extension .fit) in quotation.
+where `x` is the name of the fits file (with extension .fit) in quotation.
 
 Very useful for Comparison between plots from spectra.py @rofhima13.
 
