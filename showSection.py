@@ -46,6 +46,7 @@ def show(filename):
                 plt.imshow(arrsNorm2)
         else: 
             print("You typed the name of file wrongly: HA, OIII and SII are the only existing ones")
+        plt.show()
     else:
         print("You have not inserted the name properly: <name.fit>")
     plt.show()

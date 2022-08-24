@@ -8,7 +8,8 @@ Created on Wed Aug  3 16:06:49 2022
 from FitsExtraction import HDUs, fitFiles, pixelNum  #importing HDU Data Sets from FIT files as well as copies of the Fit files
 import numpy as np #Importing numpy for useful array manipulation.
 import matplotlib.pyplot as plt #Used for graph plotting
-from statistics import median, multimode, stdev 
+from statistics import median, multimode, stdev
+import show
 import sys 
 """
 Converting PrimaryHDU's into numpy arrays by firstly extracting them from 
@@ -64,6 +65,10 @@ minToMax_arr = []   #Matrix needed to store 1D data for checking Max and Min
 stat_titles = ["_____HA Stats________", "_____OIII Stats________", "_____SII Stats________" ]
 max_vals = [] #storing Maximum value of g_arr, h_arr and i_arr into array, RESPECTIVELY
 min_vals = [] #storing Minimum value of g_arr, h_arr and i_arr into array, RESPECTIVELY
+median_arr = []
+modes_arr = []
+stDev_arr = []
+
 
 for x in range(len(stat_titles)):
     print(stat_titles[x]) #print the current stat title
@@ -75,10 +80,16 @@ for x in range(len(stat_titles)):
     maxim, minim = minToMax_arr[-1], minToMax_arr[0]
     print("Maximum photons in a pixel = ", maxim) #Max pixel value
     print("Minimum photons in a pixel = ", minim) #Min Pixel value
-    print("Median = ", median(minToMax_arr)) #Getting median value
-    print("Mode(s) = ", multimode(minToMax_arr)) #Getting modal value. Using multimode in case of two modes or more
+    med =  median(minToMax_arr)
+    print("Median = ", med) #Getting median value
+    median_arr.append(med)
+    mode = multimode(minToMax_arr)
+    print("Mode(s) = ", mode) #Getting modal value. Using multimode in case of two modes or more
+    modes_arr.append(mode)
     mean = sum(minToMax_arr)/len(minToMax_arr) #Getting Mean value of data
-    print("StDev = ", stdev(minToMax_arr, xbar = mean)) #Standard Deviation
+    std = stdev(minToMax_arr, xbar = mean)
+    print("StDev = ", std) #Standard Deviation
+    stDev_arr.append(std)
     max_vals.append(maxim)
     min_vals.append(minim)
     minToMax_arr.clear() #Clearing array of all content for OIII and SII data storing
