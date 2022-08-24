@@ -11,7 +11,7 @@ Each fit File consists of a Primary and an Image HDU. These are two sub-lists wi
 `HDUs[0]` ---> `[PrimaryHDU, ImageHDU]` from Hydrogen Alpha Fit file
  
 `HDUs[1]` ---> `[PrimaryHDU, ImageHDU]` from Oxygen III Fit file
-
+ 
 `HDUs[2]` ---> `[PrimaryHDU, ImageHDU]` from Silicon II Fit file
      
 Hence accessing the `ImageHDU` of in row element `x` of `HDUs` array: 
@@ -67,7 +67,7 @@ The pixels will be given in terms of a tuple:
 See image below with an example of chosen user input:
 
 1. Scaling Factor = `40`
-2. Level Limit = `10`
+2. Level Limit = `10` 
 3. Last user input:
     * `Yes` *(in order to see all levels)*
     * `x` *(`x` is an integer Level number)*
