@@ -66,10 +66,12 @@ The pixels will be given in terms of a tuple:
 
 See image below with an example of chosen user input:
 
-* Scaling Factor = `40`
-* Level Limit = `10`
-* Last user input = `Yes` *(in order to see all levels)*
-
+1. Scaling Factor = `40`
+2. Level Limit = `10`
+3. Last user input:
+    * `Yes` *(in order to see all levels)*
+    * `x` *(`x` is an integer Level number)*
+    * `x,y,z,...` *(multiple integer level numbers of any random chosen level)*
 
 Tuples are used further on in plotting of filtered data in spectra.py @rofhima13
 
