@@ -6,10 +6,12 @@ from DataAnalysis import arrs, Levels # Importing arrays from Amani's code
 from DataAnalysis import XYm_Lists # Importing filtered data from Amani's code
 import matplotlib.pyplot as plt # Import matplotlib library for plotting
 import numpy as np # Import numpy library for array arithmetic
+from showSection import show
 
 files = arrs # Create a list of filenames (unfiltered data)
 files_filtered = XYm_Lists # Create a list of filtered data
 names = ["Hydrogen Alpha", "Oxygen III", "Silicon II"] # Names of nebulae
+fnames = ["HA", "OIII", "SII"]
 
 def plot_spectrum(file): # Create a function to plot the spectrum
     pixels = np.mean(file, axis=1) # Get average of all pixels relative to x-axis
@@ -17,7 +19,7 @@ def plot_spectrum(file): # Create a function to plot the spectrum
     # Plot the resultant spectrum
     plt.plot(range(len(pixels)), pixels)
     plt.xlabel("Pixel Number (relative to x-axis)")
-    plt.ylabel("Light Intensity relative to x-axis")
+    plt.ylabel("Light Intensity relative to x-axis (Arbitrary Unit)")
 
 for file in files:
     plot_spectrum(file)
@@ -45,5 +47,15 @@ for i, data in enumerate(files_filtered):
     plt.ylabel("Image Y-axis")
     plt.imshow(arr, cmap=plt.cm.magma)
     plt.figure() # Show plot in its own window
+
+    plot_spectrum(arr.transpose())
+    plt.title(f"Filtered spectrum data for {names[i]}")
+    plt.figure()
+
+prompt = input("Do you wish to show the original images as well? Type in the name of the file (without the .fit extension).")
+
+if prompt:
+    for fname in fnames:
+        show(fname + ".fit")
 
 plt.show() # Show all the plots at once

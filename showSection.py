@@ -48,3 +48,4 @@ def show(filename):
             print("You typed the name of file wrongly: HA, OIII and SII are the only existing ones")
     else:
         print("You have not inserted the name properly: <name.fit>")
+    plt.show()
