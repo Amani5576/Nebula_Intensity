@@ -41,7 +41,6 @@ for i, data in enumerate(files_filtered):
         # (Max = Levels - 0, where 0 -> Max intensity)
     plt.title(f"Filtered data for {names[i]}")
     plt.xlabel("Image X-axis")
-    plt.axis("off")
     plt.ylabel("Image Y-axis")
     plt.imshow(arr, cmap=plt.cm.magma)
     plt.figure() # Show plot in its own window
