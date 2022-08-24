@@ -51,14 +51,14 @@ This file:
         Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
         Level 4 -> 4th highest.......etc   
             
-**NOTE**: There automatically exists an initial **level 0**. This intenisty level is only for one value in particular which has the highest intensity value within the *entire matrix*.
+    **NOTE**: There automatically exists an initial **level 0**. This intenisty level is only for one value in particular which has the highest intensity value within the *entire matrix*.
              
-*The above essestially decreases processing time if not all intensity levels are desired.*
+    *The above essestially decreases processing time if not all intensity levels are desired.*
 
-* Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
-    -Get pixels that belong to all levels of intensity up until the lowest intensity
-    -Get pixels that belong to a particular level of intenisty 
-    -Let pixels that belong to particular levels of intenisty 
+    * Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
+        -Get pixels that belong to all levels of intensity up until the lowest intensity
+        -Get pixels that belong to a particular level of intenisty 
+        -Let pixels that belong to particular levels of intenisty 
         
 The pixels will be given in terms of a tuple:
 
