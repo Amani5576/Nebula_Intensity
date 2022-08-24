@@ -10,9 +10,9 @@ Each fit File consists of a Primary and an Image HDU. These are two sub-lists wi
 
 `HDUs[0]` ---> `[PrimaryHDU, ImageHDU]` from Hydrogen Alpha Fit file
  
-`HDUs[1]` ---> `[PrimaryHDU, ImageHDU]` from Oxygen 3 Fit file
+`HDUs[1]` ---> `[PrimaryHDU, ImageHDU]` from Oxygen III Fit file
 
-`HDUs[2]` ---> `[PrimaryHDU, ImageHDU]` from Silicon 2 Fit file
+`HDUs[2]` ---> `[PrimaryHDU, ImageHDU]` from Silicon II Fit file
      
 Hence accessing the `ImageHDU` of in row element `x` of `HDUs` array: 
             
@@ -37,6 +37,7 @@ This file:
     -Lets user decide on scaling Factor. For Exmaple:
 
          You've chosen Scaling factor to be 6 (6 levels of varying intensity):
+         
          If max = 80 and min = 20 then range is (80 - 20) = 60
          By dividing the range by the Scale we get -> 60/6 = 10.
          Hence, from Level 1 (highest intensity) to Level 2
@@ -48,25 +49,26 @@ This file:
         Level 1 -> highest intensity level (Thus, type in the integer "1")
         Level 2 -> 2nd highest intensity up until highest intenisty (Thus, type in the integer "2")
         Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
-        Level 4 -> 4th highest........         
+        Level 4 -> 4th highest.......etc   
             
-        NOTE: that there automatically exists an initial level 0. This intenisty level is only for one value in particular which has the highest intensity value within the entire matrix.
+        NOTE: There automatically exists an initial **level 0**. This intenisty level is only for one value in particular which has the highest intensity value within the *entire matrix*.
              
 *The above essestially decreases processing time if not all intensity levels are desired.*
 
-    -Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
-        -Get pixels that belong to all levels of intensity up until the lowest intensity
-        -Get pixels that belong to a particular level of intenisty 
-        -Let pixels that belong to particular levels of intenisty 
+*Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
+    -Get pixels that belong to all levels of intensity up until the lowest intensity
+    -Get pixels that belong to a particular level of intenisty 
+    -Let pixels that belong to particular levels of intenisty 
         
 The pixels will be given in terms of a tuple:
 
     (<x-coord> , <y-coord> , <Intensity_level>)
 
 See image below with an example of chosen user input:
-Scaling Factor = 40
-Level Limit = 10
-Last user input = "Yes" (in order to see all levels)
+
+*Scaling Factor = `40`
+*Level Limit = `10`
+*Last user input = `Yes` *(in order to see all levels)*
 
 
 Tuples are used further on in plotting of filtered data in spectra.py @rofhima13
@@ -75,11 +77,11 @@ For the Hydrogen Alpha Filtered data:
 
 <img src="./img/TupleHA.jpeg">
     
-For the Oxygen 3 Filtered data:
+For the Oxygen III Filtered data:
 
 <img src="./img/TupleO3.jpeg">
     
-For the Oxygen 3 Filtered data:
+For the Silicon II Filtered data:
 
 <img src="./img/TupleS2.jpeg">
 
