@@ -2,14 +2,14 @@
 # Rofhiwa Matumba
 # 3931762
 
-from DataAnalysis import arrs, Levels # Importing arrays from Amani's code
-from DataAnalysis import XYm_Lists # Importing filtered data from Amani's code
+from DataAnalysis import arrs, Levels, XYm_Lists # Importing arrays from Amani's code (arrs -> images, levels -> user input, XYm_Lists -> filtered images)
 import matplotlib.pyplot as plt # Import matplotlib library for plotting
 import numpy as np # Import numpy library for array arithmetic
 
 files = arrs # Create a list of filenames (unfiltered data)
 files_filtered = XYm_Lists # Create a list of filtered data
 names = ["Hydrogen Alpha", "Oxygen III", "Silicon II"] # Names of nebulae
+
 
 def plot_spectrum(file): # Create a function to plot the spectrum
     pixels = np.mean(file, axis=1) # Get average of all pixels relative to x-axis
@@ -48,6 +48,6 @@ for i, data in enumerate(files_filtered):
 
     plot_spectrum(arr.transpose())
     plt.title(f"Filtered spectrum data for {names[i]}")
-    plt.figure()
+    plt.figure() # Show plot in its own window
 
 plt.show() # Show all the plots at once
