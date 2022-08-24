@@ -19,7 +19,9 @@ numpyDatTyp = { 8: "numpy.uint8 (note it is UNsigned integer)",
 
 print("_________________HDULists________________________")
 #Below returns a HDUList of the Fit data files.
-HDUs = [] #List to stor HDU (Header Data Unit) for HA, OIII and SII.
+
+HDUs = [] #List to store HDU (Header Data Unit) for HA, OIII and SII.
+
 for x in range(len(fitFiles)):#looping through length of array
     HDUs.append(fits.open(fitFiles[x])) #Open fits file and add HDU data into HUDs array
     print(HDUs[x].info()) #Outputs a Summary of the info of the HDU List.

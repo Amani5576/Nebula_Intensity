@@ -2,12 +2,12 @@
 # Rofhiwa Matumba
 # 3931762
 
-from DataAnalysis import fitFiles # Importing arrays from Amani's code
+from DataAnalysis import arrs # Importing arrays from Amani's code
 from DataAnalysis import XYm_Lists # Importing filtered data from Amani's code
 import matplotlib.pyplot as plt # Import matplotlib library for plotting
 import numpy as np # Import numpy library for array arithmetic
 
-files = fitFiles # Create a list of filenames (unfiltered data)
+files = arrs # Create a list of filenames (unfiltered data)
 files_filtered = XYm_Lists # Create a list of filtered data
 names = ["Hydrogen Alpha", "Oxygen III", "Silicon II"] # Names of nebulae
 
@@ -37,9 +37,10 @@ for i, file in enumerate(files):
 for i, data in enumerate(files_filtered):
     arr = np.zeros([400,400]) # Create a 400x400 matrix of zeros
     for coord in data: # Loops through each of the filtered data, plots accordingly
-        arr[coord[0], coord[1]] = 1 # Adds filtered data to the matrix
+        arr[coord[1], coord[0]] = 1 # Adds filtered data to the matrix
     plt.title(f"Filtered data for {names[i]}")
     plt.xlabel("Image X-axis")
+    plt.axis("off")
     plt.ylabel("Image Y-axis")
     plt.imshow(arr, cmap=plt.cm.gray)
     plt.figure() # Show plot in its own window

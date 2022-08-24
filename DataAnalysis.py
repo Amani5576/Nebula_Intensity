@@ -156,7 +156,7 @@ print("")
 print("If <Intensity level> = 0, then this is the only pixel in the matrix that has the largest number of photons")
 print("")
 
-scales = [] #Array holding scales e.g. gScales, hScales and iScales.
+scales = [] #Array holding constructed scales for HA OIII and SII
 
 for x in range(len(max_vals)):
     scales.append((max_vals[x] - min_vals[x])/scF)
@@ -169,8 +169,8 @@ XYm_iList = [] #List that holds tuples of (x,y,intensity level) for i_arr
 XYm_Lists = [XYm_gList, XYm_hList, XYm_iList]
 
 for q in range(len(XYm_Lists)):
-    i_idxNum = 0 #row number
-    for i in arrs[q]: #Looping through array of 
+    i_idxNum = 0 #Index number
+    for i in arrs[q]: #Looping through array of HA, then OIII then SII
         y = i_idxNum #row number or y coordinate of element
         j_idxNum = 0 #column number
         for j in i: #for every element in the list "i"
@@ -195,109 +195,105 @@ for q in range(len(XYm_Lists)):
     XYm_Lists[q].sort() #Sorting list in ascending order
 
 #Note that input() automatically converts user intput into a string
-choice = input("""
-                           
-    Would you like to see all levels from highest to chosen level ? If so type "Yes" or "all"
-    (make sure to use quotation marks)
-    
-    Or 
-    
-    Would you like to see only one level ? If so type the integer level number:
+if Levels !=1:
+    choice = input("""
+                               
+        Would you like to see all levels from highest to chosen level ? If so type "Yes" or "all"
+        (make sure to use quotation marks)
         
-    Or
-    
-    Would you rather see specific levels? 
-        e.g: Only level 2 and level 3: then type -> 2,3
-             Only Level 6 and level 54 and level 4: then type -> 6, 54, 4
-             (spacing doesnt matter, but make sure to separate using commas)
-           
-                """)
-print("---------------------------------------------------------")
-print("")
-
-#NOTE: choice is only a string list and needs to be converted for proper usage:
-
-numbers = ["1","2","3","4","5","6","7","8","9"]
-    
-if "," in choice: #If multitude of specific levels are chosen
-
-    #Convert choice string input into list of those specific levels
-    f = choice.split(",") #Automatically splits every string element based on the specified arguement splitter
-    #f is an array of strings with each string being a level number
-    
-    d = [] #Element to store integer values
-    for i in f: #for every string element
-        d.append(int(i)) #adding integer version of each number string into new list
+        Or 
         
-elif "," not in choice and choice[0] in numbers: #if the input was only of one level
-    d = int(choice) #Convert level from string to integer
-else:
-    d = choice #Remains as string
-    pass #Take it as a String value cause it has no numbers.
+        Would you like to see only one level ? If so type the integer level number:
+            
+        Or
+        
+        Would you rather see specific levels? 
+            e.g: Only level 2 and level 3: then type -> 2,3
+                 Only Level 6 and level 54 and level 4: then type -> 6, 54, 4
+                 (spacing doesnt matter, but make sure to separate using commas)
+               
+                    """)
+    print("---------------------------------------------------------")
+    print("")
+  
+    #NOTE: choice is only a string list and needs to be converted for proper usage:
 
-#function that filters lists by removing unwanted tuples based on chosen level from user input
-def levelFilter(tuplist): #creation of tuple-filtering function
-    
-    restart = True #Used to make sure that fo loop restarts every time a tuple is removed/filtered out
-    
-    #If the level given is only an integer value of a specific level
-    if type(d) == int: 
-        while restart:
-            restart = False #make restart False incase while loop is no longer needed
-            for tup in tuplist: #For each tuple within the list
-                if tup[2] != d: #if the intesity level within tuple is not equal to desired user input
-                    tuplist.remove(tup) #remove the tuple element from the list
-                    restart = True #make Restart true again to continue while loop
-                    break #get out of for loop
-    
-    #If the level given is an array of specifically chosen levels
-    elif type(d) == list:
-        while restart:
-            restart = False
-            for tup in tuplist: #For each tuple within the list
-                for h in d: #For each level of interest given by user
-                    if tup[2] != h: #if the intesity level within tuple is not equal to desired user input
-                        tuplist.remove(tup) #remove the tuple element from the list
-                        restart = True
-                        break
-                    break
-    return tuplist
-    
-for x in range(len(XYm_Lists)): #looping through length of array XYm_Lists
-    
-    #if the input is "yes" or "all"
-    if type(d) == str:#Making sure its not case sensitive by just checking if its a string
-        if XYm_Lists[x] == []: #If the list is empty
-            print("Coordinates of %s from intensity Level 1 -> %d:" % (plot_Titles[x],Levels))
-            print("")
-            print("There are no intenisties within Level 1 -> %d for %s" %(Levels, plot_Titles[x]))
-            print("")
-        else:
-            if Levels > 1: #If levels desired are coninuous from highest intensity till a desired limit
+    numbers = ["1","2","3","4","5","6","7","8","9"]
+        
+    if "," in choice: #If multitude of specific levels are chosen
+
+        #Convert choice string input into list of those specific levels
+        f = choice.split(",") #Automatically splits every string element based on the specified arguement splitter
+        #f is an array of strings with each string being a level number
+        
+        d = [] #Element to store integer values
+        for i in f: #for every string element
+            d.append(int(i)) #adding integer version of each number string into new list
+            
+    elif "," not in choice and choice[0] in numbers: #if the input was only of one level
+        d = int(choice) #Convert level from string to integer
+    else:
+        d = choice #Remains as string
+        pass #Take it as a String value cause it has no numbers.
+
+    #function that filters lists by removing unwanted tuples based on chosen level from user input
+    def levelFilter(tuplist): #creation of tuple-filtering function
+        templist= []
+      
+        #If the level given is only an integer value of a specific level
+        if type(d) == int: 
+                for tup in tuplist: #For each tuple within the list
+                    if tup[2] == d: #if the intesity level within tuple is equal to desired user input
+                        templist.append(tup) #Add tuple element into temporary list
+                        
+        #If the level given is an array of specifically chosen levels
+        elif type(d) == list:
+                for tup in tuplist: #For each tuple within the list
+                    for h in d: #For each level of interest given by user
+                        if tup[2] == h: #if the intesity level within tuple is equal to desired user input
+                            templist.append(tup) #Add tuple element into temporary list
+        return templist
+        
+    for x in range(len(XYm_Lists)): #looping through length of array XYm_Lists
+        
+        #if the input is "yes" or "all"
+        if type(d) == str:#Making sure its not case sensitive by just checking if its a string
+            if XYm_Lists[x] == []: #If the list is empty
                 print("Coordinates of %s from intensity Level 1 -> %d:" % (plot_Titles[x],Levels))
                 print("")
-                print(XYm_Lists[x]) #Print the list of tuples
+                print("There are no intenisties within Level 1 -> %d for %s" %(Levels, plot_Titles[x]))
                 print("")
             else:
-                print("Coordinates of %s from intensity Level 1:" % (plot_Titles[x]))
-                print("")
-                print(XYm_Lists[x]) #Print the list of tuples
-                print("")
-        
-    else: #Otherwise print out the filtered tuples
-        filt = levelFilter(XYm_Lists[x])
-        if filt == []: #If the list is empty
-            if type(d) == list: #If user had inputted more than one specific intenisty level
+                if Levels > 1: #If levels desired are coninuous from highest intensity till a desired limit
+                    print("Coordinates of %s from intensity Level 1 -> %d:" % (plot_Titles[x],Levels))
+                    print("")
+                    print(XYm_Lists[x]) #Print the list of tuples
+                    print("")
+                else:
+                    print("Coordinates of %s from intensity Level 1:" % (plot_Titles[x]))
+                    print("")
+                    print(XYm_Lists[x]) #Print the list of tuples
+                    print("")
+            
+        else: #Otherwise print out the filtered tuples
+            filt = levelFilter(XYm_Lists[x])
+            if filt == []: #If the list is empty
+                if type(d) == list: #If user had inputted more than one specific intenisty level
+                    print("Coordinates of %s in levels %s data:" % (plot_Titles[x],choice))
+                    print("")
+                    print("There are no intenisties within the levels ",d,", based on your Scaling Factor; ", scF)
+                    print("")
+                else: #If it was not a list of levels but instead just one level
+                    print("There is no intensity value belonging within that level %d, based on your Scaling Factor; %d" % (d,scF))
+                    print("")
+            else: 
                 print("Coordinates of %s in levels %s data:" % (plot_Titles[x],choice))
                 print("")
-                print("There are no intenisties within the levels", d,", based on your Scaling Factor; ", scF)
+                print(filt) #printing out filtered tuples
                 print("")
-            else: #If it was not a list of levels but instead just one level
-                print("There is no intensity value belonging within that level %d, based on your Scaling Factor; %d", (d,scF))
-                print("")
-        else: 
-            print("Coordinates of %s in levels %s data:" % (plot_Titles[x],choice))
-            print("")
-            print(filt) #printing out filtered tuples
-            print("")
-        
+else: 
+    for x in range(len(XYm_Lists)): #looping through length of array XYm_Lists
+        print("Coordinates of %s from intensity Level 1:" % (plot_Titles[x]))
+        print("")
+        print(XYm_Lists[x]) #Print the list of tuples
+        print("")
