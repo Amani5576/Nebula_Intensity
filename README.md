@@ -51,7 +51,7 @@ This file:
         Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
         Level 4 -> 4th highest.......etc   
             
-        NOTE: There automatically exists an initial **level 0**. This intenisty level is only for one value in particular which has the highest intensity value within the *entire matrix*.
+**NOTE**: There automatically exists an initial **level 0**. This intenisty level is only for one value in particular which has the highest intensity value within the *entire matrix*.
              
 *The above essestially decreases processing time if not all intensity levels are desired.*
 
