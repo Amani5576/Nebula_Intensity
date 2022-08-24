@@ -1,60 +1,63 @@
 # Nebula Intensity
 
-Analysing areas of high and low intensity of Statue of Liberty Nebulae based on user specifications
+Analysing areas of high and low intensity of Statue of Liberty Nebulae based on user specifications.
 
+Data sourced from [link](https://www.mattdieterich.com/nebuladata "this site")  where it was captured from ObsTech in Chile.
 
 ## FitExtraction file (by Amani5576)
 This file opens and extracts the HDU data from the fit files and puts them into an array; HDUs.
 Each fit File consists of a Primary and an Image HDU. These are two sub-lists within each element of HDUs
 
-e.g. HDUs[0] -> [PrimaryHDU, ImageHDU] from Hydrogen Alpha Fit file 
-     HDUs[1] -> from Oxygen 3
-     HDUs[2] -> from Silicon 2
+    HDUs[0] -> [PrimaryHDU, ImageHDU] from Hydrogen Alpha Fit file 
+    HDUs[1] -> from Oxygen 3
+    HDUs[2] -> from Silicon 2
      
 Hence accessing the Image HDU of in row element x : HDUs[x][1]
 
-Running the file allows you to get necessary information from the header of the Primary.
+Running the file allows you to get necessary information from the header of the Primary such as :
+
 
 ## DataAnalysis.py file (by Amani5576)
 This file:
--> Closes the Fit files that were opened in the FitsExtraction.py
+* Closes the Fit files that were opened in the FitsExtraction.py
 
--> Takes the Image HDU data of fit files and puts them in numpy arrays
+* Takes the Image HDU data of fit files and puts them in numpy arrays
 
--> Computes Statistical data with regards to pixel numbered values
+* Computes Statistical data with regards to pixel numbered values
     - Median pixel value
     - Mode(s) of pixel value(s)
     - Standard Deviation of pixel values.
     
-->Allows User input in assesment of relative intenisty based ona specific ImageHDU
+* Allows User input in assesment of relative intenisty based ona specific ImageHDU
 
--Lets user decide on scaling Factor:
+    -Lets user decide on scaling Factor. For Exmaple:
 
-    E.g. You've chosen Scaling factor to be 6 (6 levels of varying intensity):
+         You've chosen Scaling factor to be 6 (6 levels of varying intensity):
          If max = 80 and min = 20 then range is (80 - 20) = 60
          By dividing the range by the Scale we get -> 60/6 = 10.
          Hence, from Level 1 (highest intensity) to Level 2
          (Second highest intensity) is a difference of 10.
      
--Lets user decide on the number of level intensities desirable (from highest intesity as the first level)
+    -Lets user decide on the number of level intensities desirable (from highest intesity as the first level)
+    For Example:
 
-    e.g. Level 1 -> highest intensity level (Thus, type in the integer "1")
+         Level 1 -> highest intensity level (Thus, type in the integer "1")
          Level 2 -> 2nd highest intensity up until highest intenisty (Thus, type in the integer "2")
          Level 3 -> 3rd highest intensity up until highest intenisty (Thus, type in the integer "3")
-         Level 4 -> 4th highest........            
-         
-         NOTE: that there automatically exists an initial level 0. This intenisty level is only for 
-         one value in particular which has the highest intensity value within the entire matrix.
-         
-    This essestially decreases processing time.
+         Level 4 -> 4th highest........         
+            
+    NOTE: that there automatically exists an initial level 0. This intenisty level is only for one value in particular which has the highest intensity value within the entire matrix.
+             
+        This essestially decreases processing time.
 
--Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
-    -Get pixels that belong to all levels of intensity up until the lowest intensity
-    -Get pixels that belong to a particular level of intenisty 
-    -let pixels that belong to particular levels of intenisty 
-    
+    -Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
+        -Get pixels that belong to all levels of intensity up until the lowest intensity
+        -Get pixels that belong to a particular level of intenisty 
+        -let pixels that belong to particular levels of intenisty 
+        
 The pixels will be given in terms of a tuple:
-    ( <x-coord> , <y-coord> , <Intensity level> )
+
+    (<x-coord> , <y-coord> , <Intensity level>)
 
 See image below with an example of chosen user input:
 Scaling Factor = 40
@@ -62,16 +65,19 @@ Level Limit = 10
 Last user input = "Yes" (in order to see all levels)
 
 
-Tuples are used further on in plotting of filtered data:
+Tuples are used further on in plotting of filtered data in spectra.py @rofhima13
 
-    For the Hydrogen Alpha Filtered data:
-    <img src="./img/TupleHA.jpeg">
+For the Hydrogen Alpha Filtered data:
+
+<img src="./img/TupleHA.jpeg">
     
-    For the Oxygen 3 Filtered data:
-    <img src="./img/TupleO3.jpeg">
+For the Oxygen 3 Filtered data:
+
+<img src="./img/TupleO3.jpeg">
     
-    For the Oxygen 3 Filtered data:
-    <img src="./img/TupleS2.jpeg">
+For the Oxygen 3 Filtered data:
+
+<img src="./img/TupleS2.jpeg">
 
 
 ## showSection.py file (by Amani5576)
@@ -81,7 +87,13 @@ This is due to the fact that each numbered value in the matrices is a quanitity 
 
 NOTE: Run seperately AFTER running through Data Analysis
 
-Very useful for Comparison between plots from spectra.py
+In the command line, input:
+    
+    show(x)
+    
+where x is the name of the fits file (with extension .fit) in quotation.
+
+Very useful for Comparison between plots from spectra.py @rofhima13.
 
 ## spectra.py file (by rofhima13)
 

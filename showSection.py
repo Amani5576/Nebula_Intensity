@@ -1,3 +1,8 @@
+# Intensity Spectra of Nebulae
+# S. Amani Njoroge
+# 4060924
+# ShowSection
+
 from DataAnalysis import arrs #Importing arrays
 
 import matplotlib.pyplot as plt

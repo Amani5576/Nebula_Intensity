@@ -1,6 +1,7 @@
 # Intensity Spectra of Nebulae
 # S. Amani Njoroge
 # 4060924
+# FitsExtraction
 
 from astropy.io import fits
 import numpy as np
