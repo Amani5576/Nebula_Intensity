@@ -69,7 +69,7 @@ See image below with an example of chosen user input:
 1. Scaling Factor = `40`
 2. Level Limit = `10` 
 3. Last user input:
-    * `Yes` *(in order to see all levels)*
+    * <mark>`Yes` *(in order to see all levels)*</mark>
     * `x` *(`x` is an integer Level number)*
     * `x,y,z,...` *(multiple integer level numbers of any random chosen level)*
 
