@@ -15,7 +15,7 @@ FitsEctract.py package
 arrs = [] #Storing numpy matrix of ImageHDU of HA, OIII and SII respetively.
 plot_Titles = ["Hydrogen Alpha", "Oxygen III", "Silicon II"]
 
-import showSection
+import showSection #Ensuring that the the show() function works without having to run the showSection() separately
 
 for x in range(len(HDUs)):
     #HDUs[x][0] means the Primary HDU whilst HDUs[x][1] would have been ImageHDU

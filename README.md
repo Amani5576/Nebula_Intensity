@@ -4,7 +4,7 @@ Analysing areas of high and low intensity of Statue of Liberty Nebulae based on 
 
 Data sourced from [this site](https://www.mattdieterich.com/nebuladata "www.mattdieterich.com")  where it was captured from ObsTech in Chile.
 
-## FitExtraction file (by Amani5576)
+## FitExtraction.py file (by Amani5576)
 This file opens and extracts the HDU data from the fit files and puts them into an array; HDUs.
 Each fit File consists of a Primary and an Image HDU. These are two sub-lists within each element of HDUs
 
@@ -20,6 +20,7 @@ Hence accessing the `ImageHDU` of in row element `x` of `HDUs` array:
 
 Running the file allows you to get necessary information from the header of the Primary such as :
 
+The file can be run by running python ./FitExtraction.py on any terminal emulator on a computer with Python 3 installed
 
 ## DataAnalysis.py file (by Amani5576)
 This file:
@@ -94,21 +95,34 @@ For the Silicon II Filtered data:
 
 <img src="./img/TupleS2.jpeg">
 
+The file can be run by running python ./DataAnalysis.py on any terminal emulator on a computer with Python 3 installed
 
 ## showSection.py file (by Amani5576)
-This file shows the initial image matrix of Hydrogen Alpha, Oxygen 3 and Silicon 2 data.
 
-This is due to the fact that each numbered value in the matrices is a quanitity of the number of photons captured by the Telescope. Each element is a pixel containing a specified number of photons.
+This file shows the initial ImageHDU matrix of each Fit file before any filtration occurs
+**NOTE**: This can only be called after running through the DataAnalysis.py
 
-NOTE: Run seperately **AFTER** running through Data Analysis
+* For Hydrogen Alpha matrix:
 
-In the command line, input:
+    show(fitFiles[0])
+or 
+    show("HA.fits")
     
-    show(x)
-    
-where `x` is the name of the fits file (with extension **.fit**) in quotation.
+* For Oxygen III matrix:
 
-Very useful for comparison between plots that are made with *spectra.py* file @rofhima13.
+    show(fitFiles[1])
+or 
+    show("OIII.fits")
+    
+* For Silicon 2 matrix:
+
+    show(fitFiles[2])
+or 
+    show("SII.fits")
+
+*Its case sensitive*
+    
+This is due to the fact that each numbered value in the matrices is a quanitity of the number of photons captured by the Telescope. Each element is a pixel containing a specified number of photons. Very useful for comparison between plots that are made with *spectra.py* file @rofhima13.
 
 ## spectra.py file (by rofhima13)
 
