@@ -106,18 +106,21 @@ This file shows the initial ImageHDU matrix of each Fit file before any filtrati
 
         show(fitFiles[0])
 or 
+
         show("HA.fits")
     
 * For Oxygen III matrix:
 
         show(fitFiles[1])
 or 
+
         show("OIII.fits")
     
 * For Silicon 2 matrix:
 
         show(fitFiles[2])
-or 
+or
+
         show("SII.fits")
 
 *Its case sensitive*
