@@ -18,9 +18,7 @@ Hence accessing the `ImageHDU` of in row element `x` of `HDUs` array:
             
     HDUs[x][1]
 
-Running the file allows you to get necessary information from the header of the Primary such as :
-
-The file can be run by running python ./FitExtraction.py on any terminal emulator on a computer with Python 3 installed
+Running the file allows you to get necessary information from the header of the Primary such as *Number of data Axes for ImageHDU*, *Approximate right ascension in hours*, *Name of Object*, etc. The file can be run by running python ./FitExtraction.py on any terminal emulator on a computer with Python 3 installed
 
 ## DataAnalysis.py file (by Amani5576)
 This file:
@@ -99,8 +97,10 @@ The file can be run by running python ./DataAnalysis.py on any terminal emulator
 
 ## showSection.py file (by Amani5576)
 
-This file shows the initial ImageHDU matrix of each Fit file before any filtration occurs
+This file shows the initial ImageHDU matrix of each Fit file before any filtration occurs. This is due to the fact that each numbered value in the matrices is a quanitity of the number of photons captured by the Telescope. Each element is a pixel containing a specified number of photons. Very useful for comparison between plots that are made with *spectra.py* file @rofhima13.
+
 **NOTE**: This can only be called after running through the DataAnalysis.py
+
 
 * For Hydrogen Alpha matrix:
 
@@ -115,8 +115,6 @@ This file shows the initial ImageHDU matrix of each Fit file before any filtrati
         show(fitFiles[2])  or   show("SII.fits")
 
 *Its case sensitive*
-    
-This is due to the fact that each numbered value in the matrices is a quanitity of the number of photons captured by the Telescope. Each element is a pixel containing a specified number of photons. Very useful for comparison between plots that are made with *spectra.py* file @rofhima13.
 
 ## spectra.py file (by rofhima13)
 
