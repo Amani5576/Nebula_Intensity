@@ -56,9 +56,17 @@ This file:
     *The above essestially decreases processing time if not all intensity levels are desired.*
 
 * Allows user to choose three data ouputs: (which are limited by users chosen Scaling factor)
-    -Get pixels that belong to all levels of intensity up until the lowest intensity
-    -Get pixels that belong to a particular level of intenisty 
-    -Let pixels that belong to particular levels of intenisty 
+    -Get pixels that belong to all levels of intensity up until the lowest intensity; then user inputs:
+    
+        `Yes` *(in order to see all levels)* 
+        
+    -Get pixels that belong to a particular level of intenisty; then user inputs:
+    
+        `x` *(`x` is an integer Level number)*
+        
+    -Let pixels that belong to particular levels of intenisty; then user inputs:
+    
+        `x,y,z,...` *(multiple integer level numbers of any random chosen level split by commas)*
         
 The pixels will be given in terms of a tuple:
 
@@ -68,12 +76,10 @@ See image below with an example of chosen user input:
 
 1. Scaling Factor = `40`
 2. Level Limit = `10` 
-3. Last user input:
-    * ==`Yes` *(in order to see all levels)*==
-    * `x` *(`x` is an integer Level number)*
-    * `x,y,z,...` *(multiple integer level numbers of any random chosen level)*
+3. Last user input = `yes` 
 
-Tuples are <mark>used</mark> in plotting of filtered data in spectra.py @rofhima13
+    
+Tuples are used in plotting of filtered data in spectra.py @rofhima13
 
 For the Hydrogen Alpha Filtered data:
 

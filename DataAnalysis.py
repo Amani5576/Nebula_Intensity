@@ -23,7 +23,7 @@ for x in range(len(HDUs)):
     
     #Making sure to close each Fits file after accessing. 
     #Must come after converting the data to numpy array first
-    HDUs[x].close()
+    #HDUs[x].close()
     
 matrix_title = ["__________________HA array/matrix________________________", "__________________OIII array/matrix_________________________", "__________________SII array/matrix_________________________"]
 
@@ -145,7 +145,7 @@ XYm_iList = [] #List that holds tuples of (x,y,intensity level) for i_arr
 #array containing all XY_()List
 XYm_Lists = [XYm_gList, XYm_hList, XYm_iList]
 
-for q in range(len(XYm_Lists)):
+for q in range(len(XYm_Lists)): #Sorting/Categorising levels.
     i_idxNum = 0 #Index number
     for i in arrs[q]: #Looping through array of HA, then OIII then SII
         y = i_idxNum #row number or y coordinate of element
@@ -253,9 +253,8 @@ if Levels !=1:
                     print("")
                     print(XYm_Lists[x]) #Print the list of tuples
                     print("")
-            
         else: #Otherwise print out the filtered tuples
-            filt = levelFilter(XYm_Lists[x])
+            filt = levelFilter(XYm_Lists[x]) #levelFilter returns a filtered out (or shortened) list of tuples
             if filt == []: #If the list is empty
                 if type(d) == list: #If user had inputted more than one specific intenisty level
                     print("Coordinates of %s in levels %s data:" % (plot_Titles[x],choice))
@@ -265,12 +264,12 @@ if Levels !=1:
                 else: #If it was not a list of levels but instead just one level
                     print("There is no intensity value belonging within that level %d, based on your Scaling Factor; %d" % (d,scF))
                     print("")
-            else: 
+            else: #Otherwise filter with regards to specific level.
                 print("Coordinates of %s in levels %s data:" % (plot_Titles[x],choice))
                 print("")
                 print(filt) #printing out filtered tuples
                 print("")
-else: 
+else: #Otherwise if level chosen was just level 1
     for x in range(len(XYm_Lists)): #looping through length of array XYm_Lists
         print("Coordinates of %s from intensity Level 1:" % (plot_Titles[x]))
         print("")
