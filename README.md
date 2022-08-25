@@ -103,19 +103,22 @@ This file shows the initial ImageHDU matrix of each Fit file before any filtrati
 **NOTE**: This can only be called after running through the DataAnalysis.py
 
 * For Hydrogen Alpha matrix:
-    show(fitFiles[0])
+
+        show(fitFiles[0])
 or 
-    show("HA.fits")
+        show("HA.fits")
     
 * For Oxygen III matrix:
-    show(fitFiles[1])
+
+        show(fitFiles[1])
 or 
-    show("OIII.fits")
+        show("OIII.fits")
     
 * For Silicon 2 matrix:
-    show(fitFiles[2])
+
+        show(fitFiles[2])
 or 
-    show("SII.fits")
+        show("SII.fits")
 
 *Its case sensitive*
     
